@@ -12,7 +12,6 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script setup>
 import { ref } from 'vue';
 import { useQuasar } from 'quasar';
@@ -25,7 +24,6 @@ const goTo = (route) => {
   router.push(route);
 }
 </script>
-
 <style>
 .Tab{
   position: sticky;
