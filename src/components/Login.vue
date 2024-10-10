@@ -16,7 +16,9 @@
                 <input type="tel" id="telefono" v-model="telefono" @input="validarTelefono" required />
                 <span v-if="!telefonoValido" style="color: red;">El teléfono debe tener al menos 10 dígitos.</span>
             </div>
+            <div class="Boton">
             <button type="submit" :disabled="!correoValido || !telefonoValido">Registrar</button>
+            </div>
         </form>
 
         <div class="Ubicacion">
@@ -55,7 +57,7 @@ const enviarFormulario = () => {
 <style scoped>
 .Contacto{
     padding: 20px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(240, 240, 240, 0.928);
     border-radius: 5px;
     max-width: 800px;
     margin: auto;
@@ -71,6 +73,8 @@ h2{
 .form-group label{
     display: block;
     margin-bottom: 5px;
+    display: grid;
+    justify-items: start;
 }
 .form-group input{
     width: 100%;
@@ -85,10 +89,11 @@ button{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
 }
-button:disabled{
-    background-color: rgb(150, 150, 150);
-    cursor: not-allowed;
+.Boton{
+    display: grid;
+    justify-items: end;
 }
 button:hover{
     background-color: rgb(200, 50, 50);

@@ -31,14 +31,15 @@ const habitaciones = [
 <style scoped>
 .Habitaciones{
     padding: 20px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
-    max-width: 800px;
+    max-width: 180vh;
     margin: auto;
 }
 .ListaHabitaciones{
-    display: flex;
+    display: grid;
     flex-direction: column;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 20px;
 }
 .Habitacion{
@@ -47,6 +48,10 @@ const habitaciones = [
     border-radius: 5px;
     background-color: white;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 .Titulo{
     color: rgb(240, 66, 66);
@@ -54,10 +59,10 @@ const habitaciones = [
     justify-items: center;
 }
 .ImgHabitacion{
-    width: 80%;
-    height: 450px;
+    width: 100%;
+    object-fit: cover;
     border-radius: 5px;
-    margin: 10px auto;
+    margin-bottom: 10px;
 }
 .Habitacion h3{
     margin: 0;
@@ -79,12 +84,9 @@ const habitaciones = [
 .btn-agregar:hover {
     background-color: #218838;
 }
-@media(max-width:660px){
-    .ImgHabitacion{
-        width: 90%;
-        height: 350px;
-        border-radius: 5px;
-        margin: 10px auto;
+@media (max-width:880px) {
+    .ListaHabitaciones{
+        grid-template-columns: repeat(1, minmax(200px, 1fr));;
     }
 }
 </style>

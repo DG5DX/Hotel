@@ -25,6 +25,9 @@ const goTo = (route) => {
 }
 </script>
 <style>
+.Contenedor {
+  background-image: url(https://st2.depositphotos.com/2974663/46714/i/450/depositphotos_467149506-stock-photo-wood-texture-background-vector-illustration.jpg);
+}
 .Tab{
   position: sticky;
   top: 0;

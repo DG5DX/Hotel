@@ -28,7 +28,7 @@ const servicios = ref([
         id: 2,
         nombre: "Wi-Fi Gratuito",
         descripcion: "Disfruta de conexión a Internet gratuita en todas las áreas del hotel.",
-        precio: 0,
+        precio: 1,
         imagen: "https://images.unsplash.com/photo-1554098415-cae1af5e4f1a?q=80&w=1487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
@@ -51,15 +51,22 @@ const servicios = ref([
         descripcion: "Mantente en forma con acceso a nuestro gimnasio completamente equipado.",
         precio: 8,
         imagen: "https://plus.unsplash.com/premium_photo-1661284821625-9400498df354?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+    id: 6,
+        nombre: "Centro de Spa",
+        descripcion: "Relajate en nuestro servicio de spa.",
+        precio: 20,
+        imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 ]);
 </script>
 <style scoped>
 .Servicios{
     padding: 20px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
-    max-width: 800px;
+    max-width: 180vh;
     margin: auto;
 }
 h2{
@@ -68,8 +75,8 @@ h2{
     color: rgb(240, 66, 66);
 }
 .ListaServicios{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
 }
 .Servicio{
@@ -78,14 +85,18 @@ h2{
     border-radius: 5px;
     background-color: white;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 .Servicio h3{
     margin: 10px 0;
     color: rgb(240, 66, 66);
 }
 .ImgServicio{
-    width: 320px;
-    height: 300px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -104,5 +115,19 @@ button{
 }
 button:hover{
     background-color: rgb(200, 50, 50);
+}
+@media (max-width: 1145px) {
+    .ListaServicios{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 20px;
+}
+}
+@media (max-width: 805px) {
+    .ListaServicios{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    gap: 20px;
+}
 }
 </style>

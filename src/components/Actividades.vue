@@ -81,9 +81,9 @@ const agregarAlCarrito = (actividad) => {
 <style scoped>
 .Actividades{
     padding: 20px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
-    max-width: 800px;
+    max-width: 180vh;
     margin: auto;
 }
 h2{
@@ -92,25 +92,30 @@ h2{
     color: rgb(240, 66, 66);
 }
 .ListaActividades{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
     gap: 20px;
 }
-.Actividad{
+.Actividad {
     flex: 1 1 calc(50% - 20px);
     padding: 15px;
     border: 1px solid #d4c8b9;
     border-radius: 5px;
     background-color: white;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
 }
 .Actividad h3{
     margin: 10px 0;
     color: rgb(240, 66, 66);
 }
-.ImgActividad{
-    width: 300px;
-    height: 300px;
+.ImgActividad {
+    width: 100%;
+    height: 200px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -129,5 +134,26 @@ button{
 }
 button:hover{
     background-color: rgb(200, 50, 50);
+}
+@media (max-width: 905px){
+    .ListaActividades{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 20px;
+}
+}
+@media (max-width: 690px){
+    .ListaActividades{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 20px;
+}
+}
+@media (max-width: 465px){
+    .ListaActividades{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    gap: 20px;
+}
 }
 </style>
