@@ -12,7 +12,7 @@
                 <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Piscina del hotel" />
                 <img src="https://images.unsplash.com/photo-1495365200479-c4ed1d35e1aa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Habitaciones">
+                    alt="Habitaciones" />
             </div>
             <button @click="Anterior">◀️</button>
             <button @click="Siguiente">▶️</button>
@@ -31,19 +31,25 @@
             <h3>Servicios Destacados</h3>
             <div class="ServiciosLista">
                 <div class="Servicio">
-                    <h4>Spa y Bienestar</h4>
-                    <h5>⭐⭐⭐⭐</h5>
-                    <p>Relájate en nuestro spa de clase mundial.</p>
+                    <div class="ServicioContent">
+                        <h4>Spa y Bienestar</h4>
+                        <h5>⭐⭐⭐⭐⭐</h5>
+                        <p>Relájate en nuestro spa de clase mundial.</p>
+                    </div>
                 </div>
                 <div class="Servicio">
-                    <h4>Restaurante Gourmet</h4>
-                    <h5>⭐⭐⭐⭐⭐</h5>
-                    <p>Disfruta de la mejor gastronomía local e internacional.</p>
+                    <div class="ServicioContent">
+                        <h4>Restaurante Gourmet</h4>
+                        <h5>⭐⭐⭐⭐⭐</h5>
+                        <p>Disfruta de la mejor gastronomía local e internacional.</p>
+                    </div>
                 </div>
                 <div class="Servicio">
-                    <h4>Excursiones Guiadas</h4>
-                    <h5>⭐⭐⭐⭐⭐</h5>
-                    <p>Explora la naturaleza con nuestras excursiones exclusivas.</p>
+                    <div class="ServicioContent">
+                        <h4>Excursiones Guiadas</h4>
+                        <h5>⭐⭐⭐⭐⭐</h5>
+                        <p>Explora la naturaleza con nuestras excursiones exclusivas.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const imagenes = [
     "https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -79,8 +85,14 @@ const Siguiente = () => {
     currentIndex.value = (currentIndex.value + 1) % imagenes.length;
 };
 </script>
+
 <style scoped>
-.Inicio{
+/* Aplica la transición de transform a todos los div */
+div {
+    transition: transform 0.5s ease-in-out;
+}
+
+.Inicio {
     padding: 20px;
     background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
@@ -88,24 +100,24 @@ const Siguiente = () => {
     margin: auto;
 }
 
-header{
+header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.Logo{
+.Logo {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     color: rgb(255, 11, 11);
     margin: 30px;
 }
 
-.Eslogan{
+.Eslogan {
     font-size: 18px;
     color: #fafafa;
 }
 
-.Carrusel{
+.Carrusel {
     position: relative;
     max-width: 600px;
     margin: 20px auto;
@@ -113,19 +125,19 @@ header{
     border-radius: 10px;
 }
 
-.Imagenes{
+.Imagenes {
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
-.Imagenes img{
+.Imagenes img {
     width: 100%;
     height: auto;
     max-width: 600px;
     flex-shrink: 0;
 }
 
-button{
+button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -136,80 +148,105 @@ button{
     cursor: pointer;
 }
 
-button:first-of-type{
+button:first-of-type {
     left: 10px;
 }
 
-button:last-of-type{
+button:last-of-type {
     right: 10px;
 }
 
-.Historia{
+.Historia {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 234, 9, 0.867);
     border-radius: 5px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease;
 }
 
-.Historia h3{
+.Historia:hover {
+    transform: scale(1.05);
+}
+
+.Historia h3 {
     margin: 10px;
     color: rgb(240, 66, 66);
 }
 
-.ServiciosDestacados{
+.ServiciosDestacados {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(11, 105, 255, 0.768);
     border-radius: 5px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease;
 }
 
-.ServiciosDestacados h3{
+.ServiciosDestacados:hover {
+    transform: scale(1.05);
+}
+
+.ServiciosDestacados h3 {
     color: rgb(255, 117, 31);
     justify-content: center;
     display: grid;
 }
-.ServiciosLista{
+
+.ServiciosLista {
     display: grid;
     justify-content: space-between;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.Servicio{
-    flex: 1;
+.Servicio {
     text-align: center;
     background-color: #f9f9f9;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid #d4c8b9;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
 }
 
-.Servicio h4{
+.Servicio:hover {
+    transform: scale(1.05);
+}
+
+.ServicioContent {
+    transition: transform 0.3s ease-in-out;
+}
+
+.Servicio h4 {
     margin-bottom: 5px;
     color: rgb(240, 66, 66);
 }
 
-.Testimonios{
+.Testimonios {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 87, 53, 0.619);
     border-radius: 5px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
 }
-.Testimonios h3{
-    color: rgb(255, 156, 27);
-    justify-content: center;
-    display: grid;
+
+.Testimonios:hover {
+    transform: scale(1.05);
 }
-.ListaTestimonios{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+.Testimonios h3 {
+    color: rgb(0, 255, 247);
 }
-blockquote{
+
+.ListaTestimonios {
+    margin-top: 15px;
+}
+
+.ListaTestimonios blockquote {
     font-style: italic;
-    color: #333;
-    border-left: 4px solid rgb(240, 66, 66);
-    padding-left: 10px;
+    border-left: 5px solid #ccc;
+    padding-left: 15px;
+    margin: 10px 0;
 }
 </style>

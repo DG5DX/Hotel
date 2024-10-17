@@ -12,8 +12,10 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
+import { Notify } from 'quasar';  // Importamos Notify desde Quasar
 
 const habitaciones = [
     { id: 1, nombre: 'Suite Deluxe', descripcion: 'Una suite con vista al mar y jacuzzi privado.', precio: 200, imagen: 'https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -27,22 +29,41 @@ const habitaciones = [
     { id: 9, nombre: 'Bungalow', descripcion: 'Cabaña privada con todas las comodidades.', precio: 220, imagen: 'https://plus.unsplash.com/premium_photo-1685133855300-60d42d843c0a?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
     { id: 10, nombre: 'Habitación Romántica', descripcion: 'Ideal para parejas en escapada romántica.', precio: 180, imagen: 'https://plus.unsplash.com/premium_photo-1661884238187-1c274b3c3413?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
 ];
+
+function agregarAlCarrito(habitacion) {
+    // Usamos Quasar para mostrar la notificación
+    Notify.create({
+        message: `La habitación "${habitacion.nombre}" ha sido agregada al carrito con éxito!`,
+        color: 'green',
+        position: 'bottom',
+        timeout: 3000,  // Desaparece después de 3 segundos
+        actions: [
+            {
+                label: 'Cerrar',
+                color: 'white',
+            }
+        ]
+    });
+}
 </script>
+
 <style scoped>
-.Habitaciones{
+.Habitaciones {
     padding: 20px;
     background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
     max-width: 180vh;
     margin: auto;
 }
-.ListaHabitaciones{
+
+.ListaHabitaciones {
     display: grid;
     flex-direction: column;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 20px;
 }
-.Habitacion{
+
+.Habitacion {
     padding: 15px;
     border: 1px solid #d4c8b9;
     border-radius: 5px;
@@ -52,27 +73,42 @@ const habitaciones = [
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    transition: transform 0.3s ease;
+    /* Agrega una transición suave */
 }
-.Titulo{
+
+.Habitacion:hover {
+    transform: scale(1.05);
+    /* Expande el div en un 5% cuando el mouse está sobre el div */
+}
+
+.Titulo {
     color: rgb(240, 66, 66);
     display: grid;
     justify-items: center;
 }
-.ImgHabitacion{
+
+.ImgHabitacion {
     width: 100%;
+    height: 300px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    /* Añade la transición a la imagen también */
 }
-.Habitacion h3{
+
+.Habitacion h3 {
     margin: 0;
     color: rgb(240, 66, 66);
 }
-.precio{
+
+.precio {
     font-weight: bold;
     color: green;
 }
-.btn-agregar{
+
+.btn-agregar {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #28a745;
@@ -81,12 +117,8 @@ const habitaciones = [
     border-radius: 5px;
     cursor: pointer;
 }
+
 .btn-agregar:hover {
     background-color: #218838;
-}
-@media (max-width:880px) {
-    .ListaHabitaciones{
-        grid-template-columns: repeat(1, minmax(200px, 1fr));;
-    }
 }
 </style>

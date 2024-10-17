@@ -12,8 +12,10 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
+import { Notify } from 'quasar';  // Importamos Notify desde Quasar
 
 const actividades = ref([
     {
@@ -74,30 +76,42 @@ const actividades = ref([
     }
 ]);
 
-const agregarAlCarrito = (actividad) => {
-    console.log(`Agregado al carrito: ${actividad.nombre}`);
-};
+function agregarAlCarrito(actividad) {
+    // Notificación usando Quasar
+    Notify.create({
+        message: `La actividad "${actividad.nombre}" ha sido agregada al carrito con éxito!`,
+        color: 'green',
+        position: 'bottom',
+        timeout: 3000,  // Desaparece después de 3 segundos
+        actions: [
+            {
+                label: 'Cerrar',
+                color: 'white',
+            }
+        ]
+    });
+}
 </script>
+
 <style scoped>
-.Actividades{
+.Actividades {
     padding: 20px;
     background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
     max-width: 180vh;
     margin: auto;
 }
-h2{
+h2 {
     text-align: center;
     margin-bottom: 20px;
     color: rgb(240, 66, 66);
 }
-.ListaActividades{
+.ListaActividades {
     display: grid;
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     gap: 20px;
 }
 .Actividad {
-    flex: 1 1 calc(50% - 20px);
     padding: 15px;
     border: 1px solid #d4c8b9;
     border-radius: 5px;
@@ -108,8 +122,12 @@ h2{
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    transition: transform 0.3s ease; /* Agrega una transición suave */
 }
-.Actividad h3{
+.Actividad:hover {
+    transform: scale(1.05); /* Expande el div en un 5% cuando el mouse está sobre el div */
+}
+.Actividad h3 {
     margin: 10px 0;
     color: rgb(240, 66, 66);
 }
@@ -120,11 +138,11 @@ h2{
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.precio{
+.precio {
     font-weight: bold;
     margin: 10px 0;
 }
-button{
+button {
     padding: 8px 16px;
     background-color: rgb(240, 66, 66);
     color: white;
@@ -132,28 +150,29 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover{
+button:hover {
     background-color: rgb(200, 50, 50);
 }
-@media (max-width: 905px){
-    .ListaActividades{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
-    gap: 20px;
+
+@media (max-width: 905px) {
+    .ListaActividades {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
+@media (max-width: 690px) {
+    .ListaActividades {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
-@media (max-width: 690px){
-    .ListaActividades{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 20px;
-}
-}
-@media (max-width: 465px){
-    .ListaActividades{
-    display: grid;
-    grid-template-columns: repeat(1, minmax(200px, 1fr));
-    gap: 20px;
-}
+@media (max-width: 465px) {
+    .ListaActividades {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
 </style>

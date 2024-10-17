@@ -15,6 +15,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { Notify } from 'quasar';  // Importamos Notify desde Quasar
 
 const servicios = ref([
     {
@@ -53,33 +54,50 @@ const servicios = ref([
         imagen: "https://plus.unsplash.com/premium_photo-1661284821625-9400498df354?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-    id: 6,
+        id: 6,
         nombre: "Centro de Spa",
         descripcion: "Relajate en nuestro servicio de spa.",
         precio: 20,
         imagen: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
 ]);
+
+function agregarAlCarrito(servicio) {
+    // Notificación usando Quasar
+    Notify.create({
+        message: `El servicio "${servicio.nombre}" ha sido agregado al carrito con éxito!`,
+        color: 'green',
+        position: 'bottom',
+        timeout: 3000,  // Desaparece después de 3 segundos
+        actions: [
+            {
+                label: 'Cerrar',
+                color: 'white',
+            }
+        ]
+    });
+}
 </script>
+
 <style scoped>
-.Servicios{
+.Servicios {
     padding: 20px;
     background-color: rgba(19, 19, 19, 0.9);
     border-radius: 5px;
     max-width: 180vh;
     margin: auto;
 }
-h2{
+h2 {
     text-align: center;
     margin-bottom: 20px;
     color: rgb(240, 66, 66);
 }
-.ListaServicios{
+.ListaServicios {
     display: grid;
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
 }
-.Servicio{
+.Servicio {
     padding: 15px;
     border: 1px solid #d4c8b9;
     border-radius: 5px;
@@ -89,23 +107,27 @@ h2{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    transition: transform 0.3s ease; /* Agrega una transición suave */
 }
-.Servicio h3{
+.Servicio:hover {
+    transform: scale(1.05); /* Expande el div en un 5% cuando el mouse está sobre el div */
+}
+.Servicio h3 {
     margin: 10px 0;
     color: rgb(240, 66, 66);
 }
-.ImgServicio{
+.ImgServicio {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
 }
-.precio{
+.precio {
     font-weight: bold;
     margin: 10px 0;
 }
-button{
+button {
     padding: 8px 16px;
     background-color: rgb(240, 66, 66);
     color: white;
@@ -113,21 +135,22 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover{
+button:hover {
     background-color: rgb(200, 50, 50);
 }
+
 @media (max-width: 1145px) {
-    .ListaServicios{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 20px;
-}
+    .ListaServicios {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
 @media (max-width: 805px) {
-    .ListaServicios{
-    display: grid;
-    grid-template-columns: repeat(1, minmax(200px, 1fr));
-    gap: 20px;
-}
+    .ListaServicios {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
 </style>
