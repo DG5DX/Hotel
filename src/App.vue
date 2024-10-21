@@ -67,11 +67,13 @@ const goTo = (route) => {
   display: grid;
   justify-content: center;
 }
-.Copy{
+
+.Copy {
   display: grid;
   align-items: center;
 }
-a{
+
+a {
   color: aqua;
 }
 

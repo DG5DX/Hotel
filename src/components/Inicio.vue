@@ -84,10 +84,20 @@ const Anterior = () => {
 const Siguiente = () => {
     currentIndex.value = (currentIndex.value + 1) % imagenes.length;
 };
+
+let interval;
+
+onMounted(() => {
+    interval = setInterval(Siguiente, 3000);
+});
+
+onUnmounted(() => {
+    clearInterval(interval);
+});
 </script>
 
+
 <style scoped>
-/* Aplica la transición de transform a todos los div */
 div {
     transition: transform 0.5s ease-in-out;
 }

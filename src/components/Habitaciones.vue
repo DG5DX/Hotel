@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Notify } from 'quasar';  // Importamos Notify desde Quasar
+import { Notify } from 'quasar';
 
 const habitaciones = [
     { id: 1, nombre: 'Suite Deluxe', descripcion: 'Una suite con vista al mar y jacuzzi privado.', precio: 200, imagen: 'https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -31,12 +31,11 @@ const habitaciones = [
 ];
 
 function agregarAlCarrito(habitacion) {
-    // Usamos Quasar para mostrar la notificación
     Notify.create({
         message: `La habitación "${habitacion.nombre}" ha sido agregada al carrito con éxito!`,
         color: 'green',
         position: 'bottom',
-        timeout: 3000,  // Desaparece después de 3 segundos
+        timeout: 3000,
         actions: [
             {
                 label: 'Cerrar',
@@ -74,12 +73,10 @@ function agregarAlCarrito(habitacion) {
     justify-content: flex-end;
     align-items: center;
     transition: transform 0.3s ease;
-    /* Agrega una transición suave */
 }
 
 .Habitacion:hover {
     transform: scale(1.05);
-    /* Expande el div en un 5% cuando el mouse está sobre el div */
 }
 
 .Titulo {
@@ -95,7 +92,6 @@ function agregarAlCarrito(habitacion) {
     border-radius: 5px;
     margin-bottom: 10px;
     transition: transform 0.3s ease;
-    /* Añade la transición a la imagen también */
 }
 
 .Habitacion h3 {
@@ -120,5 +116,13 @@ function agregarAlCarrito(habitacion) {
 
 .btn-agregar:hover {
     background-color: #218838;
+}
+
+@media (max-width: 700px) {
+    .ListaHabitaciones {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+        gap: 20px;
+    }
 }
 </style>

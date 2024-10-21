@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Notify } from 'quasar';  // Importamos Notify desde Quasar
+import { Notify } from 'quasar';
 
 const servicios = ref([
     {
@@ -63,12 +63,11 @@ const servicios = ref([
 ]);
 
 function agregarAlCarrito(servicio) {
-    // Notificación usando Quasar
     Notify.create({
         message: `El servicio "${servicio.nombre}" ha sido agregado al carrito con éxito!`,
         color: 'green',
         position: 'bottom',
-        timeout: 3000,  // Desaparece después de 3 segundos
+        timeout: 3000,
         actions: [
             {
                 label: 'Cerrar',
@@ -87,16 +86,19 @@ function agregarAlCarrito(servicio) {
     max-width: 180vh;
     margin: auto;
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
     color: rgb(240, 66, 66);
 }
+
 .ListaServicios {
     display: grid;
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
 }
+
 .Servicio {
     padding: 15px;
     border: 1px solid #d4c8b9;
@@ -107,15 +109,18 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.3s ease; /* Agrega una transición suave */
+    transition: transform 0.3s ease;
 }
+
 .Servicio:hover {
-    transform: scale(1.05); /* Expande el div en un 5% cuando el mouse está sobre el div */
+    transform: scale(1.05);
 }
+
 .Servicio h3 {
     margin: 10px 0;
     color: rgb(240, 66, 66);
 }
+
 .ImgServicio {
     width: 100%;
     height: 200px;
@@ -123,10 +128,12 @@ h2 {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 .precio {
     font-weight: bold;
     margin: 10px 0;
 }
+
 button {
     padding: 8px 16px;
     background-color: rgb(240, 66, 66);
@@ -135,6 +142,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: rgb(200, 50, 50);
 }
@@ -146,6 +154,7 @@ button:hover {
         gap: 20px;
     }
 }
+
 @media (max-width: 805px) {
     .ListaServicios {
         display: grid;
